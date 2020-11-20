@@ -13,8 +13,13 @@ public class TipoArmazenagemView extends javax.swing.JInternalFrame {
     TipoArmazenagemDAO cd = new TipoArmazenagemDAO(); 
 
     public TipoArmazenagemView() {
+         ///*LOAD DO FORMULARIO*/// 
         initComponents();
         TipoTable.setModel(new TipoArmazenagemTable(new TipoArmazenagemDAO().Listartodos()));
+        jbtnAdicionarTipoArmazenagem.setEnabled(true);
+        jbtnLimparTipoArmazenagem.setEnabled(false);
+        jbtnAtualizarTipoArmazenagem.setEnabled(false);
+        jbtnDeletarTipoArmazenagem.setEnabled(false);
     }
     
     
@@ -153,7 +158,7 @@ public class TipoArmazenagemView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnAdicionarTipoArmazenagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAdicionarTipoArmazenagemActionPerformed
-        /*CADASTRA O CLIENTE*/
+       ///*METODO PARA CADASTRAR*///
        if(jtxNomeTipoArmazenagem .getText().equals("")){
         JOptionPane.showMessageDialog(null, "Existem campos obrigatórios que não foram preenchidos, favor verificar os seguinte campos: NOME");
        } else{
@@ -162,12 +167,18 @@ public class TipoArmazenagemView extends javax.swing.JInternalFrame {
        TipoTable.setModel(new TipoArmazenagemTable(new TipoArmazenagemDAO().Listartodos()));
        jtxNomeTipoArmazenagem.setText("");
        jtxIdTipoArmazenagem.setText("");
+       jbtnAdicionarTipoArmazenagem.setEnabled(true);
+       jbtnLimparTipoArmazenagem.setEnabled(false);
+       jbtnAtualizarTipoArmazenagem.setEnabled(false);
+       jbtnDeletarTipoArmazenagem.setEnabled(false);
        }
     }//GEN-LAST:event_jbtnAdicionarTipoArmazenagemActionPerformed
 
     private void jbtnDeletarTipoArmazenagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDeletarTipoArmazenagemActionPerformed
 
-           /*EXCLUIR O TIPO DE ARMAZENAGEM*/
+       ///*METODO PARA EXCLUIR*///
+       int escolha = JOptionPane.showConfirmDialog(null, "Você realmente quer excluir?", "Cliente - Excluir", JOptionPane.YES_NO_OPTION);
+       if (escolha == 0){   
        if(jtxIdTipoArmazenagem.getText().equals("")){
         JOptionPane.showMessageDialog(null, "Nenhum Cliente foi selecionado");
        } else{
@@ -177,24 +188,38 @@ public class TipoArmazenagemView extends javax.swing.JInternalFrame {
 
        jtxIdTipoArmazenagem.setText("");
        jtxNomeTipoArmazenagem.setText("");
+       jbtnAdicionarTipoArmazenagem.setEnabled(true);
+       jbtnLimparTipoArmazenagem.setEnabled(false);
+       jbtnAtualizarTipoArmazenagem.setEnabled(false);
+       jbtnDeletarTipoArmazenagem.setEnabled(false);
        }       
         
     }//GEN-LAST:event_jbtnDeletarTipoArmazenagemActionPerformed
-
+    }
+    
     private void jbtnLimparTipoArmazenagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimparTipoArmazenagemActionPerformed
-       jtxNomeTipoArmazenagem.setText("");
-       jtxIdTipoArmazenagem.setText("");
+        ///*METODO PARA APENAS LIMPAR TODOS OS CAMPOS*///
+        jtxNomeTipoArmazenagem.setText("");
+        jtxIdTipoArmazenagem.setText("");
+        jbtnAdicionarTipoArmazenagem.setEnabled(true);
+        jbtnLimparTipoArmazenagem.setEnabled(false);
+        jbtnAtualizarTipoArmazenagem.setEnabled(false);
+        jbtnDeletarTipoArmazenagem.setEnabled(false);
     }//GEN-LAST:event_jbtnLimparTipoArmazenagemActionPerformed
 
     private void TipoTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TipoTableMouseClicked
-
+        ///*PREENCHER CAMPOS COM VALORES DA TABELA*///
         jtxIdTipoArmazenagem.setText(TipoTable.getValueAt(TipoTable.getSelectedRow(), TipoArmazenagemTable.COL_ID_TIPO_ARMAZENAGEM).toString());
         jtxNomeTipoArmazenagem.setText(TipoTable.getValueAt(TipoTable.getSelectedRow(), TipoArmazenagemTable.COL_NOME_TIPO_ARMAZENAGEM).toString()); 
+        jbtnAdicionarTipoArmazenagem.setEnabled(false);
+        jbtnLimparTipoArmazenagem.setEnabled(true);
+        jbtnAtualizarTipoArmazenagem.setEnabled(true);
+        jbtnDeletarTipoArmazenagem.setEnabled(true);
         
     }//GEN-LAST:event_TipoTableMouseClicked
 
     private void jbtnAtualizarTipoArmazenagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAtualizarTipoArmazenagemActionPerformed
-         /*ALTERAR O TIPO DE ARMAZENAGEM*/
+        ///*METODO PARA ALTERAR*///
        if(jtxNomeTipoArmazenagem .getText().equals("")){
         JOptionPane.showMessageDialog(null, "Existem campos obrigatórios que não foram preenchidos, favor verificar os seguinte campos: NOME");
        } else{
@@ -204,6 +229,10 @@ public class TipoArmazenagemView extends javax.swing.JInternalFrame {
        TipoTable.setModel(new TipoArmazenagemTable(new TipoArmazenagemDAO().Listartodos()));
        jtxNomeTipoArmazenagem.setText("");
        jtxIdTipoArmazenagem.setText("");
+       jbtnAdicionarTipoArmazenagem.setEnabled(true);
+       jbtnLimparTipoArmazenagem.setEnabled(false);
+       jbtnAtualizarTipoArmazenagem.setEnabled(false);
+       jbtnDeletarTipoArmazenagem.setEnabled(false);
        }
     }//GEN-LAST:event_jbtnAtualizarTipoArmazenagemActionPerformed
 

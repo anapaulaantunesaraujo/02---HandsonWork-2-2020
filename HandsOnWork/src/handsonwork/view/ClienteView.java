@@ -11,8 +11,14 @@ public class ClienteView extends javax.swing.JInternalFrame {
     ClienteDAO cd = new ClienteDAO();   
     
     public ClienteView() {
+        ///*LOAD DO FORMULARIO*/// 
         initComponents();
         ClienteTable.setModel(new ClienteTableModel(new ClienteDAO().Listartodos()));
+        jbtnAtualizarCliente.setEnabled(false);
+        jbtnDeletarCliente.setEnabled(false);
+        jbtnLimparCliente.setEnabled(false);
+        jbtnAdicionarCliente.setEnabled(true);
+        
     }
 
     /*
@@ -441,26 +447,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAdicionarActionPerformed
-            /*CADASTRAR O CLIENTE*/
-       if(jftfCnpjCliente .getText().equals("") || jftDataCliente .getText().equals("") || jtxNomeCliente.getText().equals("")){
-        JOptionPane.showMessageDialog(null, "Existem campos obrigatórios que não foram preenchidos, favor verificar os seguinte campos: NOME, DATA FUNDAÇÃO e CNPJ");
-       } else{
-       cl.setCnpj(jftfCnpjCliente.getText());
-       cl.setDatainicio(jftDataCliente.getText());
-       cl.setNomepessoa(jtxNomeCliente.getText());
-       cl.setTelefonepessoa(jftfTelefoneCliente.getText());
-       cl.setEmailpessoa(jtxEmailCliente.getText()); 
-       cl.setIdpessoa(Integer.parseInt(jtxIdCliente.getText()));
-       cl.setEhfuncionario("N");
-       cl.setEhcliente("S");
-       cd.inserir(cl);
-       ClienteTable.setModel(new ClienteTableModel(new ClienteDAO().Listartodos()));
-       jftfCnpjCliente.setText("");
-       jftDataCliente.setText("");
-       jtxNomeCliente.setText("");
-       jftfTelefoneCliente.setText("");
-       jtxEmailCliente.setText("");
-       }
+      
     }//GEN-LAST:event_jbtnAdicionarActionPerformed
 
     private void jbtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimparActionPerformed
@@ -476,7 +463,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jbtnAdicionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAdicionarClienteActionPerformed
-        /*CADASTRAR O CLIENTE*/
+        ///*METODO PARA CADASTRAR*///
         if(jftfCnpjCliente .getText().equals("") || jftDataCliente .getText().equals("") || jtxNomeCliente.getText().equals("")){
         JOptionPane.showMessageDialog(null, "Existem campos obrigatórios que não foram preenchidos, favor verificar os seguinte campos: NOME, DATA FUNDAÇÃO e CNPJ");
        } else{
@@ -495,13 +482,17 @@ public class ClienteView extends javax.swing.JInternalFrame {
        jftfTelefoneCliente.setText("");
        jtxEmailCliente.setText("");
        jtxIdCliente.setText("");
-        }
-        
-           
+       jbtnAdicionarCliente.setEnabled(true);
+       jbtnLimparCliente.setEnabled(false);
+       jbtnAtualizarCliente.setEnabled(false);
+       jbtnDeletarCliente.setEnabled(false);
+        }  
     }//GEN-LAST:event_jbtnAdicionarClienteActionPerformed
 
     private void jbtnDeletarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDeletarClienteActionPerformed
-        /*EXCLUIR O CLIENTE*/
+        ///*METODO PARA EXCLUIR*///
+        int escolha = JOptionPane.showConfirmDialog(null, "Você realmente quer excluir?", "Cliente - Excluir", JOptionPane.YES_NO_OPTION);
+        if (escolha == 0){
        if(jtxIdCliente.getText().equals("")){
         JOptionPane.showMessageDialog(null, "Nenhum Cliente foi selecionado");
        } else{
@@ -514,26 +505,41 @@ public class ClienteView extends javax.swing.JInternalFrame {
        jtxNomeCliente.setText("");
        jftfTelefoneCliente.setText("");
        jtxEmailCliente.setText("");
-       } 
+       jbtnAdicionarCliente.setEnabled(true);
+       jbtnLimparCliente.setEnabled(false);
+       jbtnAtualizarCliente.setEnabled(false);
+       jbtnDeletarCliente.setEnabled(false);
+                  }   
+        }
     }//GEN-LAST:event_jbtnDeletarClienteActionPerformed
-
+  
     private void jbtnLimparClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimparClienteActionPerformed
+       ///*METODO PARA APENAS LIMPAR TODOS OS CAMPOS*///
        jftfCnpjCliente.setText("");
        jftDataCliente.setText("");
        jtxNomeCliente.setText("");
        jftfTelefoneCliente.setText("");
        jtxEmailCliente.setText("");
        jtxIdCliente.setText("");
+       jbtnAdicionarCliente.setEnabled(true);
+       jbtnLimparCliente.setEnabled(false);
+       jbtnAtualizarCliente.setEnabled(false);
+       jbtnDeletarCliente.setEnabled(false);
+       
     }//GEN-LAST:event_jbtnLimparClienteActionPerformed
 
     private void ClienteTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClienteTableMouseClicked
+       ///*PREENCHER CAMPOS COM VALORES DA TABELA*///
        jftfCnpjCliente.setText(ClienteTable.getValueAt(ClienteTable.getSelectedRow(), ClienteTableModel.COL_CNPJ_CLIENTE).toString());
        jftDataCliente.setText(ClienteTable.getValueAt(ClienteTable.getSelectedRow(), ClienteTableModel.COL_DATA_CLIENTE).toString());
        jtxNomeCliente.setText(ClienteTable.getValueAt(ClienteTable.getSelectedRow(), ClienteTableModel.COL_NOME_CLIENTE).toString());
        jftfTelefoneCliente.setText(ClienteTable.getValueAt(ClienteTable.getSelectedRow(), ClienteTableModel.COL_TELEFONE_CLIENTE).toString());
        jtxEmailCliente.setText(ClienteTable.getValueAt(ClienteTable.getSelectedRow(), ClienteTableModel.COL_EMAIL_CLIENTE).toString());    
-       jtxIdCliente.setText(ClienteTable.getValueAt(ClienteTable.getSelectedRow(), ClienteTableModel.COL_ID_CLIENTE).toString());            
-        
+       jtxIdCliente.setText(ClienteTable.getValueAt(ClienteTable.getSelectedRow(), ClienteTableModel.COL_ID_CLIENTE).toString());   
+       jbtnAdicionarCliente.setEnabled(false);
+       jbtnLimparCliente.setEnabled(true);
+       jbtnAtualizarCliente.setEnabled(true);
+       jbtnDeletarCliente.setEnabled(true);
     }//GEN-LAST:event_ClienteTableMouseClicked
 
     private void jftfCnpjClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jftfCnpjClienteActionPerformed
@@ -545,7 +551,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jftDataClienteActionPerformed
 
     private void jbtnAtualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAtualizarClienteActionPerformed
-        /*ALTERAR O CLIENTE*/
+       ///*METODO PARA ALTERAR*///
        if(jtxIdCliente.getText().equals("") || jftfCnpjCliente .getText().equals("") || jftDataCliente .getText().equals("") || jtxNomeCliente.getText().equals("")){
         JOptionPane.showMessageDialog(null, "Existem campos obrigatórios que não foram preenchidos, ou nenhum Cliente foi selecionado para alteração");
        } else{
@@ -565,9 +571,12 @@ public class ClienteView extends javax.swing.JInternalFrame {
        jftfTelefoneCliente.setText("");
        jtxEmailCliente.setText("");
        jtxIdCliente.setText("");
+       jbtnAdicionarCliente.setEnabled(true);
+       jbtnLimparCliente.setEnabled(false);
+       jbtnAtualizarCliente.setEnabled(false);
+       jbtnDeletarCliente.setEnabled(false);
        }         
     }//GEN-LAST:event_jbtnAtualizarClienteActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable ClienteTable;
@@ -606,6 +615,5 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtxIdCliente;
     private javax.swing.JTextField jtxNomeCliente;
     // End of variables declaration//GEN-END:variables
-
 
 }

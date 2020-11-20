@@ -11,8 +11,13 @@ public final class FormaPagamentoView extends javax.swing.JInternalFrame {
     FormaPagamentoDAO cd = new FormaPagamentoDAO();
    
     public FormaPagamentoView() {
+         ///*LOAD DO FORMULARIO*/// 
         initComponents();
-     FormaTable.setModel(new FormaPagamentoTable(new FormaPagamentoDAO().Listartodos()));  
+        FormaTable.setModel(new FormaPagamentoTable(new FormaPagamentoDAO().Listartodos()));
+        jbtnAdicionarFormaPagamento.setEnabled(true);
+        jbtnLimparFormaPagamento.setEnabled(false);
+        jbtnAtualizarFormaPagamento.setEnabled(false);
+        jbtnDeletarFormaPagamento.setEnabled(false);
 
     }
     
@@ -584,7 +589,7 @@ public final class FormaPagamentoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void jbtnAdicionarFormaPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAdicionarFormaPagamentoActionPerformed
-   /*CADASTRA A FORMA DE PAGAMENTO*/
+       ///*METODO PARA CADASTRAR*///
        if(jtxNomeFormaPagamento .getText().equals("")){
         JOptionPane.showMessageDialog(null, "Existem campos obrigatórios que não foram preenchidos, favor verificar os seguinte campos: NOME");
        } else{
@@ -593,11 +598,17 @@ public final class FormaPagamentoView extends javax.swing.JInternalFrame {
        FormaTable.setModel(new FormaPagamentoTable(new FormaPagamentoDAO().Listartodos())); 
        jtxNomeFormaPagamento.setText("");
        jtxIdFormaPagamento.setText("");
+       jbtnAdicionarFormaPagamento.setEnabled(true);
+       jbtnLimparFormaPagamento.setEnabled(false);
+       jbtnAtualizarFormaPagamento.setEnabled(false);
+       jbtnDeletarFormaPagamento.setEnabled(false);
        }  
     }//GEN-LAST:event_jbtnAdicionarFormaPagamentoActionPerformed
 
     private void jbtnDeletarFormaPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDeletarFormaPagamentoActionPerformed
-       /*EXCLUIR O CLIENTE*/
+       ///*METODO PARA EXCLUIR*///
+       int escolha = JOptionPane.showConfirmDialog(null, "Você realmente quer excluir?", "Cliente - Excluir", JOptionPane.YES_NO_OPTION);
+       if (escolha == 0){
        if(jtxIdFormaPagamento.getText().equals("")){
         JOptionPane.showMessageDialog(null, "Nenhum Cliente foi selecionado");
        } else{
@@ -606,22 +617,36 @@ public final class FormaPagamentoView extends javax.swing.JInternalFrame {
        FormaTable.setModel(new FormaPagamentoTable(new FormaPagamentoDAO().Listartodos()));
        jtxNomeFormaPagamento.setText("");
        jtxIdFormaPagamento.setText("");
+       jbtnAdicionarFormaPagamento.setEnabled(true);
+       jbtnLimparFormaPagamento.setEnabled(false);
+       jbtnAtualizarFormaPagamento.setEnabled(false);
+       jbtnDeletarFormaPagamento.setEnabled(false);
        }        
  
     }//GEN-LAST:event_jbtnDeletarFormaPagamentoActionPerformed
-
+    }
     private void jbtnLimparFormaPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimparFormaPagamentoActionPerformed
-       jtxNomeFormaPagamento.setText("");
-       jtxIdFormaPagamento.setText("");
+       ///*METODO PARA APENAS LIMPAR TODOS OS CAMPOS*///
+        jtxNomeFormaPagamento.setText("");
+        jtxIdFormaPagamento.setText("");
+        jbtnAdicionarFormaPagamento.setEnabled(true);
+        jbtnLimparFormaPagamento.setEnabled(false);
+        jbtnAtualizarFormaPagamento.setEnabled(false);
+        jbtnDeletarFormaPagamento.setEnabled(false);
     }//GEN-LAST:event_jbtnLimparFormaPagamentoActionPerformed
 
     private void FormaTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FormaTableMouseClicked
+       ///*PREENCHER CAMPOS COM VALORES DA TABELA*///
         jtxIdFormaPagamento.setText(FormaTable.getValueAt(FormaTable.getSelectedRow(), FormaPagamentoTable.COL_ID_FORMA_PAGAMENTO).toString());
         jtxNomeFormaPagamento.setText(FormaTable.getValueAt(FormaTable.getSelectedRow(), FormaPagamentoTable.COL_NOME_FORMA_PAGAMENTO).toString());
+        jbtnAdicionarFormaPagamento.setEnabled(false);
+        jbtnLimparFormaPagamento.setEnabled(true);
+        jbtnAtualizarFormaPagamento.setEnabled(true);
+        jbtnDeletarFormaPagamento.setEnabled(true);
     }//GEN-LAST:event_FormaTableMouseClicked
 
     private void jbtnAtualizarFormaPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAtualizarFormaPagamentoActionPerformed
-         /*ALTERAR A FORMA DE PAGAMENTO*/
+        ///*METODO PARA ALTERAR*///
        if(jtxNomeFormaPagamento .getText().equals("")){
         JOptionPane.showMessageDialog(null, "Existem campos obrigatórios que não foram preenchidos, favor verificar os seguinte campos: NOME");
        } else{
@@ -631,6 +656,10 @@ public final class FormaPagamentoView extends javax.swing.JInternalFrame {
        FormaTable.setModel(new FormaPagamentoTable(new FormaPagamentoDAO().Listartodos())); 
        jtxNomeFormaPagamento.setText("");
        jtxIdFormaPagamento.setText("");
+       jbtnAdicionarFormaPagamento.setEnabled(true);
+       jbtnLimparFormaPagamento.setEnabled(false);
+       jbtnAtualizarFormaPagamento.setEnabled(false);
+       jbtnDeletarFormaPagamento.setEnabled(false);
        }         
     }//GEN-LAST:event_jbtnAtualizarFormaPagamentoActionPerformed
 

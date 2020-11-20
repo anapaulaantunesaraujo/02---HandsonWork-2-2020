@@ -11,8 +11,13 @@ public class PlanoView extends javax.swing.JInternalFrame {
     PlanoDAO cd = new PlanoDAO();
     
     public PlanoView() {
+         ///*LOAD DO FORMULARIO*/// 
         initComponents();
         PlanopTable.setModel(new PlanoTable(new PlanoDAO().Listartodos()));
+        jbtnAdicionarPlano.setEnabled(true);
+        jbtnLimparPlano.setEnabled(false);
+        jbtnAtualizarPlano.setEnabled(false);
+        jbtnDeletarPlano.setEnabled(false);
     }
 
     /**
@@ -758,7 +763,7 @@ public class PlanoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void jbtnAdicionarPlanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAdicionarPlanoActionPerformed
-        /*CADASTRA O CLIENTE*/
+        ///*METODO PARA CADASTRAR*///
        if(jtxNomePlano .getText().equals("")){
         JOptionPane.showMessageDialog(null, "Existem campos obrigatórios que não foram preenchidos, favor verificar os seguinte campos: NOME");
        } else{
@@ -767,16 +772,27 @@ public class PlanoView extends javax.swing.JInternalFrame {
        PlanopTable.setModel(new PlanoTable(new PlanoDAO().Listartodos()));
        jtxIdPlano.setText("");
        jtxNomePlano.setText("");
+       jbtnAdicionarPlano.setEnabled(true);
+       jbtnLimparPlano.setEnabled(false);
+       jbtnAtualizarPlano.setEnabled(false);
+       jbtnDeletarPlano.setEnabled(false);
        }
     }//GEN-LAST:event_jbtnAdicionarPlanoActionPerformed
 
     private void jbtnLimparPlanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimparPlanoActionPerformed
-       jtxIdPlano.setText("");
-       jtxNomePlano.setText("");
+        ///*METODO PARA APENAS LIMPAR TODOS OS CAMPOS*///
+        jtxIdPlano.setText("");
+        jtxNomePlano.setText("");
+        jbtnAdicionarPlano.setEnabled(true);
+        jbtnLimparPlano.setEnabled(false);
+        jbtnAtualizarPlano.setEnabled(false);
+        jbtnDeletarPlano.setEnabled(false);
     }//GEN-LAST:event_jbtnLimparPlanoActionPerformed
 
     private void jbtnDeletarPlanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDeletarPlanoActionPerformed
-       /*EXCLUIR O PLANO*/
+       ///*METODO PARA EXCLUIR*///
+       int escolha = JOptionPane.showConfirmDialog(null, "Você realmente quer excluir?", "Cliente - Excluir", JOptionPane.YES_NO_OPTION);
+       if (escolha == 0){
        if(jtxIdPlano.getText().equals("")){
         JOptionPane.showMessageDialog(null, "Nenhum Cliente foi selecionado");
        } else{
@@ -785,20 +801,30 @@ public class PlanoView extends javax.swing.JInternalFrame {
        PlanopTable.setModel(new PlanoTable(new PlanoDAO().Listartodos()));
        jtxIdPlano.setText("");
        jtxNomePlano.setText("");
+       jbtnAdicionarPlano.setEnabled(true);
+       jbtnLimparPlano.setEnabled(false);
+       jbtnAtualizarPlano.setEnabled(false);
+       jbtnDeletarPlano.setEnabled(false);
        }  
     }//GEN-LAST:event_jbtnDeletarPlanoActionPerformed
-
+    }
+    
     private void PlanopTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PlanopTableMouseClicked
+        ///*PREENCHER CAMPOS COM VALORES DA TABELA*///
         jtxIdPlano.setText(PlanopTable.getValueAt(PlanopTable.getSelectedRow(),PlanoTable.COL_ID_PLANO).toString());
         jtxNomePlano.setText(PlanopTable.getValueAt(PlanopTable.getSelectedRow(), PlanoTable.COL_NOME_PLANO).toString());
+        jbtnAdicionarPlano.setEnabled(false);
+        jbtnLimparPlano.setEnabled(true);
+        jbtnAtualizarPlano.setEnabled(true);
+        jbtnDeletarPlano.setEnabled(true);
     }//GEN-LAST:event_PlanopTableMouseClicked
 
     private void jtxIdPlanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxIdPlanoActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_jtxIdPlanoActionPerformed
 
     private void jbtnAtualizarPlanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAtualizarPlanoActionPerformed
-       /*ALTERAR O CLIENTE*/
+       ///*METODO PARA ALTERAR*///
        if(jtxIdPlano .getText().equals("")){
         JOptionPane.showMessageDialog(null, "Existem campos obrigatórios que não foram preenchidos, ou nenhum Cliente foi selecionado para alteração");
        } else{
@@ -808,6 +834,10 @@ public class PlanoView extends javax.swing.JInternalFrame {
        PlanopTable.setModel(new PlanoTable(new PlanoDAO().Listartodos()));
        jtxIdPlano.setText("");
        jtxNomePlano.setText("");
+       jbtnAdicionarPlano.setEnabled(true);
+       jbtnLimparPlano.setEnabled(false);
+       jbtnAtualizarPlano.setEnabled(false);
+       jbtnDeletarPlano.setEnabled(false);
        }
     }//GEN-LAST:event_jbtnAtualizarPlanoActionPerformed
 
