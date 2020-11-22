@@ -41,7 +41,7 @@ public class ClienteDAO {
      }       
     }
     
-     //*QUERY PARA INSERIR CLIENTE     
+     //*QUERY PARA ALTERAR CLIENTE     
     public void alterar (ClienteModel a){
         String sql = "update pessoa set nome_pessoa = ? , cnpjcpf_pessoa = ?, data_inicio = ?, ehfuncionario = ?, ehCliente = ?, telefone_pessoa = ?,email_pessoa = ? where id_pessoa = ?";
     try{
