@@ -38,7 +38,7 @@ public class FuncionarioDAO {
      }       
     }
     
-     //*QUERY PARA INSERIR FUNCIONARIO    
+     //*QUERY PARA ALTERAR FUNCIONARIO    
     public void alterar (FuncionarioModel a){
         String sql = "update pessoa set nome_pessoa = ? , cnpjcpf_pessoa = ?, data_inicio = ?, ehfuncionario = ?, ehCliente = ?, telefone_pessoa = ?,email_pessoa = ? where id_pessoa = ?";
     try{
